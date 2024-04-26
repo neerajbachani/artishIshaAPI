@@ -4,7 +4,7 @@ require('dotenv').config();
 
 
 
-const PORT = 8000
+const PORT = process.env.PORT
 app.listen(PORT, async()=> {
     await connectDb()
     console.log("server started on ", PORT)
