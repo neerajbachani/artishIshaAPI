@@ -41,6 +41,21 @@ const productSchema = new mongoose.Schema({
       varmalaPreservation: {
         type: String,
       },
+      wallClock:{
+        type: String,
+      },
+      geodeArt: {
+        type: String,
+      },
+      namePlate: {
+        type: String,
+      },
+      navkarMantraFrame: {
+        type: String,
+      },
+      resinSpecial:{
+        type: String,
+      },
       resinRawMaterials:{
         type: String,  
       },
@@ -61,10 +76,7 @@ const productSchema = new mongoose.Schema({
       },
       vintage:{
         type: String,
-      },
-      geodeArt: {
-        type: String,
-      },     
+      },   
       image: {
         type: String,
         required: true,

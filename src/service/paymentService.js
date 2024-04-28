@@ -21,7 +21,7 @@ const createPaymentLink= async (orderId)=>{
             email: true,
           },
           reminder_enable: true,
-          callback_url: `https://resingiftstore.vercel.app/payment/${orderId}`,
+          callback_url: `https://artishresin.vercel.app/payment/${orderId}`,
           callback_method: 'get',
         };
     

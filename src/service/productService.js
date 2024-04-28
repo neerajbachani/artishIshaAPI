@@ -16,6 +16,11 @@ async function createProduct(reqData) {
         color: reqData.color,
         resin: reqData.resin,
         varmalaPreservation: reqData.varmalaPreservation,
+        wallClock:reqData.wallClock,
+        namePlate:reqData.namePlate,
+        navkarMantraFrame:reqData.navkarMantraFrame,
+        geodeArt: reqData.geodeArt,
+        resinSpecial: reqData.resinSpecial,
         resinRawMaterials: reqData.resinRawMaterials,
         digitalArt: reqData.digitalArt,
         festivalSpecial: reqData.festivalSpecial,
@@ -23,7 +28,7 @@ async function createProduct(reqData) {
         business: reqData.business,
         lippanArt: reqData.lippanArt,
         vintage: reqData.vintage,
-        geodeArt: reqData.geodeArt,
+        
         option: reqData.option,   
         details: `<ul>${detailsAsBulletPoints}</ul>`, 
         discount: reqData.discount,
@@ -66,7 +71,7 @@ async function getAllProducts(reqQuery) {
   let query = Product.find();
 
   const filterFields = [
-    'color', 'resin', 'varmalaPreservation', 'digitalArt', 'jewel', 'festivalSpecial', 'business', 'lippanArt', 'vintage', 'geodeArt', 'resinRawMaterials'
+    'color', 'resin', 'varmalaPreservation', 'wallClock', 'namePlate', 'navkarMantraFrame', 'resinSpecial', 'digitalArt', 'jewel', 'festivalSpecial', 'business', 'lippanArt', 'vintage', 'geodeArt', 'resinRawMaterials'
   ];
 
   filterFields.forEach(field => {
