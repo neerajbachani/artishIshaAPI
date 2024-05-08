@@ -32,6 +32,8 @@ const mongoose = require('mongoose');
    discount: {
       type: Number
    },
+   customizationNote: { type: String, default: '' },
+   customizationImage: { type: String, default: '' },
     userId: [
         {
             type: mongoose.Schema.Types.ObjectId,

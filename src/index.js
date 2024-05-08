@@ -1,19 +1,29 @@
-const express = require("express")
-const cors = require("cors")
+const express = require("express");
+const cors = require("cors");
+const multer = require('multer'); // Import multer
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const upload = multer({
+    storage: multer.memoryStorage(),
+    fields: ['image', 'productId', 'customizationNote']
+  });
 
-const app = express()
-
-
+const app = express();
+app.use(express.json());
+app.use(upload.any());
 app.use(bodyParser.json());
-app.use(express.json())
-app.use(cors())
+
+app.use(cors());
 
 
-app.get('/',(req,res)=> {
-    return res.status(200).send({message: "helo ji", status: true})
-})
+
+
+
+
+
+app.get('/', (req, res) => {
+    return res.status(200).send({ message: "helo ji", status: true });
+});
 
 const authRouters = require("./routes/authRoute")
 app.use('/auth',authRouters)

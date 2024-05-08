@@ -2,12 +2,24 @@ const productService = require("../service/productService")
 
 const createProduct = async (req, res) => {
     try {
-        const product = await productService.createProduct(req.body);
-        return res.status(201).send(product);
+      const product = await productService.createProduct( req.body , req.files );
+      return res.status(201).send(product);
+
     } catch (error) {
-        return res.status(500).send({ error: error.message });
+      return res.status(500).send({ error: error.message });
     }
-}
+  };
+
+  const updateProduct = async (req, res) => {
+    const productId = req.params.id;
+    try {
+      const updatedProduct = await productService.updateProduct(productId, req.body, req.files);
+      console.log('Updated Product in Controller:', updatedProduct);
+      return res.status(200).json(updatedProduct);
+    } catch (error) {
+      return res.status(500).send({ error: error.message });
+    }
+  };
 
 const deleteProduct = async (req, res) => {
     const productId = req.params.id;
@@ -19,15 +31,7 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-const updateProduct = async (req, res) => {
-    const productId = req.params.id;
-    try {
-        const product = await productService.updateProduct(productId, req.body);
-        return res.status(201).send(product);
-    } catch (error) {
-        return res.status(500).send({ error: error.message });
-    }
-}
+
 
 const findProductById = async (req, res) => {
     const productId = req.params.id;

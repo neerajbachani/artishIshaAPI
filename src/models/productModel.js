@@ -35,9 +35,6 @@ const productSchema = new mongoose.Schema({
       color: {
         type: String,  
       },
-      resin: {
-        type: String,  
-      },
       varmalaPreservation: {
         type: String,
       },
@@ -56,29 +53,13 @@ const productSchema = new mongoose.Schema({
       resinSpecial:{
         type: String,
       },
-      resinRawMaterials:{
-        type: String,  
-      },
-      digitalArt: {
-        type: String,  
-      },
-      festivalSpecial: {
-        type: String,
-      },
-      lippanArt: {
-        type: String,
-      },
-      business: {
-        type: String,
-      },
-      jewel: {
-        type: String,  
-      },
-      vintage:{
-        type: String,
-      },   
+     
+     note:{
+      type: String,
+     },
       image: {
         type: String,
+        default: '',
         required: true,
       },
       quantity: {
