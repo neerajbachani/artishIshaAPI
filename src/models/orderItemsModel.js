@@ -23,6 +23,8 @@ const orderItemSchema = new Schema({
     type: Number,
 
    },
+   customizationNote: { type: String, default: '' },
+   customizationImage: { type: String, default: '' },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users',

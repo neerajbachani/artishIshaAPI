@@ -30,6 +30,8 @@ const cartSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
+    customizationNote: { type: String, default: '' },
+   customizationImage: { type: String, default: '' },
 });
 
 

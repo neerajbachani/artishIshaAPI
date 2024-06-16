@@ -2,10 +2,14 @@ const mongoose = require('mongoose');
 
 const gallerySchema = new mongoose.Schema({
     
-    link:{
-        type: String,
-        required: true,
-    },
+    // link:{
+    //     type: String,
+    //     required: true,
+    // },
+    image:{
+        type: [String],
+        default: ''
+    }
  
 });
 

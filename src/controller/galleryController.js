@@ -2,10 +2,12 @@ const Gallery = require("../service/galleryService")
 
 const manageGallery = async (req, res) => {
     try {
-        const gallery = await Gallery.manageGallery(req.body)
+        const gallery = await Gallery.manageGallery(req.body, req.files)
         return res.status(201).send(gallery);
     } catch (error) {
         return res.status(500).send({ error: error.message });
+        // console.log("error",error.message)
+
     }
 }
 

@@ -34,6 +34,8 @@ for (const item of cart.cartItems) {
         userId: item.userId,
         discount: item.discount,
         discountedPrice: item.discountedPrice,
+        customizationImage: item.customizationImage,
+        customizationNote: item.customizationNote,
     });
 
     const createdOrderItem = await orderItem.save();
@@ -47,6 +49,8 @@ const createdOrder = new Order({
     discount: cart.discount,
     totalItem: cart.totalItem,
     shippingAddress: address,
+    customizationImage: cart.customizationImage,
+    customizationNote: cart.customizationNote
     
 });
 

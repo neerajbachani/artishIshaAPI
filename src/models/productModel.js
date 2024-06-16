@@ -53,6 +53,9 @@ const productSchema = new mongoose.Schema({
       resinSpecial:{
         type: String,
       },
+      workshop:{
+        type: String,
+      },
      
      note:{
       type: String,
