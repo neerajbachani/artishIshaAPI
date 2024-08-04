@@ -37,6 +37,9 @@ app.use('/api', mailRouters)
 const productRouter = require("./routes/productRoute")
 app.use('/api/products', productRouter)
 
+// const searchRouter = require("./routes/searchRoute")
+// app.use('/api', searchRouter)
+
 const adminProductRouter = require("./routes/adminProductsRoute")
 app.use('/api/admin/products', adminProductRouter)
 
