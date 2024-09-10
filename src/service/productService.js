@@ -259,15 +259,22 @@ async function getAllProducts(reqQuery) {
       'resinRawMaterials'
     ];
   
+    let orConditions = [];
+
     filterFields.forEach(field => {
-      if (otherFilters[field]) {
-        const valueSet = new Set(otherFilters[field].split(",").map(value => value.trim().toLowerCase()));
-        const valueRegex = valueSet.size > 0 ? new RegExp([...valueSet].join("|"), "i") : null;
-        if (valueRegex) {
-          query = query.where(field).regex(valueRegex);
+      if (reqQuery[field]) {
+        let values = Array.isArray(reqQuery[field]) ? reqQuery[field] : [reqQuery[field]];
+        values = values.flatMap(v => v.split(',')).map(v => v.trim().toLowerCase());
+        
+        if (values.length > 0) {
+          orConditions.push({ [field]: { $in: values.map(v => new RegExp(v, 'i')) } });
         }
       }
     });
+  
+    if (orConditions.length > 0) {
+      query = query.and([{ $or: orConditions }]);
+    }
   
     if (sizes) {
       const sizesSet = new Set(sizes.split(",").map(value => value.trim().toLowerCase()));

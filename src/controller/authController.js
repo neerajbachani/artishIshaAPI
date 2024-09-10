@@ -42,27 +42,9 @@ const login = async (req, res) => {
     }
 }
 
-const adminLogin = async (req, res) => {
-    const { password, email } = req.body;
-    try {
-        // Check if the user's email and password match the admin credentials
-        if (email !== 'jayshah@gmail.com' || password !== '1234') {
-            return res.status(403).json({ message: 'Unauthorized' });
-        }
-
-        // You can optionally check if the user exists in your database here
-
-        // Assuming the user is an admin, generate a JWT token
-        const jwt = jwtProvider.generateToken('admin');
-
-        return res.status(200).send({ jwt, message: "Admin login success" });
-    } catch (error) {
-        return res.status(500).send({ error: error.message });
-    }
-}
 
 
 
 
-module.exports = { register, login, adminLogin}
+module.exports = { register, login}
 

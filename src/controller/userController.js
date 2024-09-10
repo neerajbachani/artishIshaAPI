@@ -151,5 +151,57 @@ const resetPassword = async (req, res) => {
   }
 };
 
+const updateProfile = async (req, res) => {
 
-module.exports = {getUserProfile , getAllUsers, getUserById, generateOTP, verifyOTP, createResetSession, resetPassword, verifyUser}
+  try {
+    const userId = req.user.id;
+ // Assuming you have authentication middleware
+    const { firstName, lastName, email } = req.body;
+    const updatedUser = await userService.updateUserProfile(userId, { firstName, lastName, email });
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const addAddress = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const addressData = req.body;
+    const updatedUser = await userService.addAddress(userId, addressData);
+    res.status(201).json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const updateAddress = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { addressId } = req.params;
+    const addressData = req.body;
+   
+    
+    const updatedUser = await userService.updateAddress(userId, addressId, addressData);
+    res.status(200).json(updatedUser);
+  } catch (error) {
+ 
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const deleteAddress = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { addressId } = req.params;
+    const updatedUser = await userService.deleteAddress(userId, addressId);
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+
+module.exports = {getUserProfile , getAllUsers, getUserById, generateOTP, verifyOTP, createResetSession, resetPassword, verifyUser, updateProfile, updateAddress, addAddress, deleteAddress}
