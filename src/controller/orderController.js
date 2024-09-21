@@ -1,5 +1,14 @@
 const orderService = require("../service/orderService")
 
+const cron = require('node-cron');
+
+
+// Schedule the deletePendingOrders to run once a day
+cron.schedule('0 0 * * *', async () => {
+    console.log("Running deletePendingOrders task...");
+    await orderService.deletePendingOrders();
+});
+
 const createOrder = async (req, res) => {
     const user = await req.user;
     try {

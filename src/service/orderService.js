@@ -57,57 +57,7 @@ const createdOrder = new Order({
 const savedOrder = await createdOrder.save();
 return savedOrder
 }
-// async function createOrder(user, shippAddress) {
-//     let address;
 
-//     if (shippAddress._id) {
-//         let existAddress = await Address.findById(shippAddress._id);
-//         address = existAddress;
-//     } else {
-//         address = new Address(shippAddress);
-//         address.user = user;
-//         await address.save();
-//         user.address.push(address);
-//         await user.save();
-//     }
-
-//     // Convert user and address to plain JavaScript objects
-//     const userObject = user.toObject();
-//     const addressObject = address.toObject();
-
-//     const cart = await cartService.findUserCart(user._id);
-//     const orderItems = [];
-
-//     for (const item of cart.cartItems) {
-//         const orderItem = new OrderItem({
-//             price: item.price,
-//             product: item.product,
-//             quantity: item.quantity,
-//             size: item.size,
-//             userId: item.userId,
-//             discount: item.discount,
-//             note:item.note,
-//         });
-
-//         const createdOrderItem = await orderItem.save();
-//         orderItems.push(createdOrderItem);
-//     }
-
-//     const createdOrder = new Order({
-//         user: userObject,
-//         orderItems,
-//         totalPrice: cart.totalPrice,
-//         totalDiscountedPrice: cart.totalDiscountedPrice,
-//         discount: cart.discount,
-//         totalItem: cart.totalItem,
-//         shippingAddress: addressObject,
-        
-//     });
-    
-
-//     const savedOrder = await createdOrder.save();
-//     return savedOrder;
-// }
 
 async function getAddressById(addressId){
     const address = await Address.findById(addressId).populate("user")
@@ -187,6 +137,21 @@ async function deleteOrder(orderId) {
     await Order.findByIdAndDelete(order._id);
 }
 
+async function deletePendingOrders() {
+    // Find all orders with status 'pending' that are older than 1 day
+    const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000); // 1 day ago
+
+    const pendingOrders = await Order.find({
+        orderStatus: 'PENDING',
+        createdAt: { $lt: oneDayAgo }
+    });
+
+    for (const order of pendingOrders) {
+        await Order.findByIdAndDelete(order._id);
+        console.log(`Order ${order._id} has been deleted.`);
+    }
+}
+
 module.exports = {
     createOrder,
     placeOrder,
@@ -198,7 +163,8 @@ module.exports = {
     usersOrderHistory,
     getAllOrders,
     deleteOrder, 
-    getAddressById
+    getAddressById,
+    deletePendingOrders
 }
 
 
