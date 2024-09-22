@@ -19,7 +19,7 @@ async function createProduct(reqData, files) {
                   }
 
                   // Calculate discount
-                  const discount = ((reqData.price - reqData.discountedPrice) / reqData.price) * 100;
+                  const discount = Number((((reqData.price - reqData.discountedPrice) / reqData.price) * 100).toFixed(2));
 
                   const detailsAsBulletPoints = reqData.details.split('. ').map((detail) => `<li>${detail}</li>`).join('');
                   const product = new Product({
@@ -73,7 +73,7 @@ async function updateProduct(productId, reqData, files) {
       // Calculate discount
       const price = reqData.price || product.price;
       const discountedPrice = reqData.discountedPrice || product.discountedPrice;
-      const discount = ((price - discountedPrice) / price) * 100;
+      const discount = Number((((price - discountedPrice) / price) * 100).toFixed(2));
 
       // Update product fields based on reqData
       product.name = reqData.name || product.name;

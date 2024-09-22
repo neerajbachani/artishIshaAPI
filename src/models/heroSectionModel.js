@@ -18,5 +18,5 @@ const heroSectionSchema = new mongoose.Schema({
  
 });
 
-const HeroSection = mongoose.model('heroSection', heroSectionSchema)
+const HeroSection = mongoose.model('heroSection', heroSectionSchema, 'herosections')
 module.exports = HeroSection
