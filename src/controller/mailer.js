@@ -26,14 +26,7 @@ let MailGenerator = new Mailgen({
     }
 })
 
-/** POST: http://localhost:8080/api/registerMail 
- * @param: {
-  "username" : "example123",
-  "userEmail" : "admin123",
-  "text" : "",
-  "subject" : "",
-}
-*/
+
 const registerMail = async (req, res) => {
     const { username, userEmail, text, subject } = req.body;
 

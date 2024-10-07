@@ -61,8 +61,6 @@ async function createProduct(reqData, files) {
       res.status(500).send(error);
   }
 }
-
-
 async function updateProduct(productId, reqData, files) {
   try {
       const product = await Product.findById(productId);
