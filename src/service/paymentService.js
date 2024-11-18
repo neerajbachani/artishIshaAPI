@@ -21,7 +21,7 @@ const createPaymentLink= async (orderId)=>{
             email: true,
           },
           reminder_enable: true,
-          callback_url: `https://api.artishisha.com/payment/${orderId}`,
+          callback_url: `https://www.artishisha.com/payment/${orderId}`,
           callback_method: 'get',
         };
     
